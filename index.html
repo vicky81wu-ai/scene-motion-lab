@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#130f18" />
+  <title>scene-motion-lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="left">
+      <header class="top">
+        <div>
+          <p class="eyebrow">scene motion experiment bench</p>
+          <h1>scene-motion-lab</h1>
+        </div>
+        <button id="debugBtn" type="button">Debug</button>
+      </header>
+
+      <div id="stageWrap" class="stageWrap ratioPhone">
+        <div id="stage" class="stage">
+          <div id="layerA" class="scene active"></div>
+          <div id="layerB" class="scene"></div>
+          <div id="steam" class="fx steam"><i></i><i></i><i></i><i></i><i></i></div>
+          <div id="sparkles" class="fx sparkles"></div>
+          <div id="warm" class="fx warm"></div>
+          <div id="rainFog" class="fx rainFog"><span></span></div>
+          <div id="mask" class="mask"></div>
+          <div id="badge" class="badge">static</div>
+        </div>
+      </div>
+
+      <div class="quick">
+        <button id="prevBtn" type="button">上一张</button>
+        <button id="walkBtn" class="mainBtn" type="button">咖啡角走近转场</button>
+        <button id="nextBtn" type="button">下一张</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <section class="card">
+        <div class="head"><h2>场景</h2><span id="sceneCount" class="pill"></span></div>
+        <div id="sceneList" class="sceneList"></div>
+      </section>
+
+      <section class="card">
+        <h2>当前图配置</h2>
+        <label><span>图片 ID</span><input id="idInput" /></label>
+        <label><span>拖动规则</span><select id="panSelect"><option>static</option><option>pan-x</option><option>pan-y</option><option>pan-xy</option></select></label>
+        <div class="grid2">
+          <label><span>最大 X</span><input id="maxX" type="number" step="10" min="0" /></label>
+          <label><span>最大 Y</span><input id="maxY" type="number" step="10" min="0" /></label>
+        </div>
+        <label><span>默认转场</span><select id="transitionSelect"><option value="soft-fade">soft fade</option><option value="zoom-blur">zoom + blur dissolve</option><option value="warm-mask">warm mask</option><option value="light-sweep">light sweep</option><option value="dark-fade">dark fade</option><option value="dream-ripple">dream ripple</option></select></label>
+        <div class="row"><button id="applyBtn" type="button">应用配置</button><button id="resetBtn" type="button">归位</button></div>
+      </section>
+
+      <section class="card">
+        <h2>叠层效果</h2>
+        <div class="checks">
+          <label><input type="checkbox" value="steam" /> 咖啡热气</label>
+          <label><input type="checkbox" value="sparkles" /> 星光/光粒</label>
+          <label><input type="checkbox" value="warm" /> 暖光闪烁</label>
+          <label><input type="checkbox" value="rainFog" /> 雨/雾/玻璃感</label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>舞台比例</h2>
+        <div class="ratioBtns">
+          <button data-ratio="ratioPhone" type="button">707 × 1536</button>
+          <button data-ratio="ratio916" type="button">9 : 16</button>
+          <button data-ratio="ratio34" type="button">3 : 4</button>
+          <button data-ratio="ratio169" type="button">16 : 9</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>导入本地底图</h2>
+        <p>只在当前浏览器临时测试，不上传、不写服务器。</p>
+        <label class="upload"><input id="upload" type="file" accept="image/*" />选择图片加入实验台</label>
+      </section>
+
+      <section class="card">
+        <div class="head"><h2>当前配置 JSON</h2><button id="copyBtn" type="button">复制</button></div>
+        <pre id="jsonOut"></pre>
+      </section>
+    </aside>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
